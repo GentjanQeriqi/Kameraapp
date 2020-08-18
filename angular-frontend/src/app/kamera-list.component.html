@@ -1,0 +1,94 @@
+<div class="kamera-content">
+    <h1 class="page-title">Regjistro Kamerat</h1>
+    <div class="kamera-create">
+
+     
+      <form #kameraForm="ngForm" (ngSubmit) = "createKamera(kameraForm)" novalidate>
+        <input type="text" id="emri" class="form-control" placeholder="Emri i kameres" 
+               required
+               name="emri" [(ngModel)]="newKamera.emri"
+               #emri="ngModel" >
+        <input type="text" id="modeli" class="form-control" placeholder="Modeli i kameres" 
+               required
+               name="modeli" [(ngModel)]="newKamera.modeli"
+               #modeli="ngModel" >
+        <input type="text" id="rezolucioni" class="form-control" placeholder="Rezolucioni i kameres" 
+               required
+               name="rezolucioni" [(ngModel)]="newKamera.rezolucioni"
+               #rezolucioni="ngModel" >
+        <input type="text" id="ip" class="form-control" placeholder="Ip e kameres" 
+               required
+               name="ip" [(ngModel)]="newKamera.ip"
+               #ip="ngModel" >  
+               
+               <input type="submit" value="Regjistro" style="margin-left: 45%;padding:5px;border-radius: 6px; margin-top: 3%;">
+              
+
+        <div *ngIf="emri.errors && emri.dirty"
+             class="alert alert-danger">
+            <div [hidden]="!emri.errors.required">
+              Ju lutem vendosni emrin.
+            </div>
+        </div>
+        <div *ngIf="modeli.errors && modeli.dirty"
+             class="alert alert-danger">
+            <div [hidden]="!modeli.errors.required">
+              Ju lutem vendosni modelin.
+            </div>
+        </div>
+        <div *ngIf="rezolucioni.errors && rezolucioni.dirty"
+             class="alert alert-danger">
+            <div [hidden]="!rezolucioni.errors.required">
+              Ju lutem vendosni rezolucionin.
+            </div>
+        </div>
+        <div *ngIf="ip.errors && ip.dirty"
+             class="alert alert-danger">
+            <div [hidden]="!ip.errors.required">
+              Ju lutem vendosni Ip.
+            </div>
+        </div>
+
+      </form>
+
+  
+
+
+
+
+    </div>
+ <ul class="kamera-list">
+      <li *ngFor="let kamera of kamerat" [class.completed]= "kamera.completed === true" >
+        <div class="todo-row" *ngIf="!editing || editingKamera.id != kamera.id">
+            <a class="kamera-completed" (click)="toggleCompleted(kamera)">
+              <i class="material-icons">camera_alt</i> 
+            </a> 
+            <span class="kamera-title">
+              {{kamera.emri}},   {{kamera.modeli}},   {{kamera.rezolucioni}}, {{kamera.ip}}
+            </span>
+            <span class="kamera-actions">
+                <a (click)="deleteKamera(kamera.id)">
+                  <i class="material-icons delete">clear</i>
+                </a>
+            </span>
+        </div>
+        <div class="kamera-edit" *ngIf="editing && editingKamera.id === kamera.id">
+            <input class="form-control" type="text" 
+             [(ngModel)]="editingKamera.title" required>
+            <span class="edit-actions">
+                
+                
+            </span>
+        </div>
+      </li>
+    </ul>
+    <div class="no-kamera" *ngIf="kamerat && kamerat.length == 0">
+        <p>Lista eshte e zbrazet</p>
+    </div>
+</div>
+<div>
+
+  
+
+</div>
+
