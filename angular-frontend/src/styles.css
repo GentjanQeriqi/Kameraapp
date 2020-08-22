@@ -166,3 +166,8 @@ li.completed i {
   }
 
 }
+
+a:hover {
+  background-color: red;
+ cursor: pointer;
+}

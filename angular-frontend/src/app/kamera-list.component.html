@@ -51,37 +51,101 @@
 
       </form>
 
-  
-
-
-
-
     </div>
- <ul class="kamera-list">
-      <li *ngFor="let kamera of kamerat" [class.completed]= "kamera.completed === true" >
-        <div class="todo-row" *ngIf="!editing || editingKamera.id != kamera.id">
-            <a class="kamera-completed" (click)="toggleCompleted(kamera)">
-              <i class="material-icons">camera_alt</i> 
-            </a> 
-            <span class="kamera-title">
-              {{kamera.emri}},   {{kamera.modeli}},   {{kamera.rezolucioni}}, {{kamera.ip}}
-            </span>
-            <span class="kamera-actions">
-                <a (click)="deleteKamera(kamera.id)">
-                  <i class="material-icons delete">clear</i>
-                </a>
-            </span>
-        </div>
-        <div class="kamera-edit" *ngIf="editing && editingKamera.id === kamera.id">
-            <input class="form-control" type="text" 
-             [(ngModel)]="editingKamera.title" required>
-            <span class="edit-actions">
-                
-                
-            </span>
-        </div>
-      </li>
-    </ul>
+
+  <table class="table table-bordered table-dark">
+      <thead>
+        <tr>
+         
+          <th scope="col">Emri</th>
+          <th scope="col">Modeli</th>
+          <th scope="col">Rezolucioni</th>
+          <th scope="col">Ip</th>
+          <th scope="col">Update</th>
+          <th scope="col">Fshij</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr  *ngFor="let kamera of kamerat" [class.completed]= "kamera.completed === true">
+      
+          
+            <td>{{kamera.emri}}</td>
+            <td>{{kamera.modeli}}</td>
+            <td>{{kamera.rezolucioni}}</td>
+            <td>{{kamera.ip}}</td>
+            
+          <td>
+            <!-- Button trigger modal -->
+            <button (click)="fillKamera(kamera)" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+              Launch
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                  <form #updateForm="ngForm" (ngSubmit) = "updateKamera(updateForm)" novalidate>
+
+                  <input type="text" name="id" id="id" hidden [(ngModel)] = "kamera.id" #id="ngModel"> 
+                  
+                    <input type="text" id="emri" class="form-control" placeholder="Emri i kameres" 
+                           required
+                           name="emri" [(ngModel)]="kamera.emri"
+                           #emri="ngModel" >
+                    <input type="text" id="modeli" class="form-control" placeholder="Modeli i kameres" 
+                           required
+                           name="modeli" [(ngModel)]="kamera.modeli"
+                           #modeli="ngModel" >
+                    <input type="text" id="rezolucioni" class="form-control" placeholder="Rezolucioni i kameres" 
+                           required
+                           name="rezolucioni" [(ngModel)]="kamera.rezolucioni"
+                           #rezolucioni="ngModel" >
+                    <input type="text" id="ip" class="form-control" placeholder="Ip e kameres" 
+                           required
+                           name="ip" [(ngModel)]="kamera.ip"
+                           #ip="ngModel" >  
+                  </form>            
+
+
+
+
+                  <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    Body
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button (click)="updateKamera()">Update Traveller</button>
+</div>
+                  </div>
+                </div>
+              
+            </div>
+
+          </td>
+
+
+
+          <td> <button (click)="deleteKamera(kamera.id)">
+            <i class="material-icons delete">clear</i>
+          </button>b4
+          
+          </td>
+        </tr>   
+      </tbody>
+    </table>
+   
+
+
+
+ 
     <div class="no-kamera" *ngIf="kamerat && kamerat.length == 0">
         <p>Lista eshte e zbrazet</p>
     </div>
@@ -91,4 +155,11 @@
   
 
 </div>
+
+
+
+
+
+
+
 

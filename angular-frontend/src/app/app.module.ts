@@ -13,17 +13,22 @@ import { KameraService } from './kamera.service';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    KameraListComponent
+    KameraListComponent,
+ 
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+   
   ],
   providers: [KameraService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

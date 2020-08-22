@@ -21,6 +21,8 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+    "bootstrap": "^4.5.2",
     "chart.js": "^2.9.3",
     "chartjs-plugin-streaming": "^1.8.0",
     "core-js": "^2.4.1",
